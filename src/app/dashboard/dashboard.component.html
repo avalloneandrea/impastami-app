@@ -1,0 +1,79 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <div class="field">
+    <label class="label">
+      Amount
+    </label>
+    <div class="control has-icons-right">
+      <input class="input is-primary is-medium" formControlName="amount" type="number" inputMode="decimal" placeholder="0" min="1" step="1">
+      <span class="icon is-right has-text-primary">
+        <i class="fas fa-fw fa-utensils"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">
+      Shape
+    </label>
+    <div class="buttons has-addons">
+      <label class="button is-medium is-expanded" [ngClass]="{'is-primary': form.value['shape'] === 'circle'}">
+        <input formControlName="shape" type="radio" value="circle"> Circle
+      </label>
+      <label class="button is-medium is-expanded" [ngClass]="{'is-primary': form.value['shape'] === 'square'}">
+        <input formControlName="shape" type="radio" value="square"> Square
+      </label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">
+      Size (cm)
+    </label>
+    <div class="control has-icons-right">
+      <input class="input is-primary is-medium" formControlName="size" type="number" inputMode="decimal" placeholder="0" min="22" max="35" step="1">
+      <span class="icon is-right has-text-primary">
+        <i class="fas fa-fw fa-up-right-and-down-left-from-center"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">
+      Hydration (%)
+    </label>
+    <div class="control has-icons-right">
+      <input class="input is-primary is-medium" formControlName="hydration" type="number" inputMode="decimal" placeholder="0" min="50" max="100" step="1">
+      <span class="icon is-right has-text-primary">
+        <i class="fas fa-fw fa-droplet"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">
+      Time (h)
+    </label>
+    <div class="control has-icons-right">
+      <input class="input is-primary is-medium" formControlName="time" type="number" inputMode="decimal" placeholder="0" min="1" max="72" step="1">
+      <span class="icon is-right has-text-primary">
+        <i class="fas fa-fw fa-clock"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">
+      &nbsp;
+    </label>
+    <div class="control">
+      <button class="button is-primary is-medium is-fullwidth" type="submit" [disabled]="form.invalid" [class.is-loading]="form.disabled">
+        <span class="icon">
+          <i class="fas fa-fw fa-pizza-slice"></i>
+        </span>
+        <strong>Impastami</strong>
+      </button>
+    </div>
+  </div>
+
+</form>
