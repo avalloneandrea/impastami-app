@@ -17,10 +17,10 @@
       Shape
     </label>
     <div class="buttons has-addons">
-      <label [ngClass]="{'is-primary': form.value['shape'] === 'circle'}" class="button is-medium is-expanded">
+      <label [class.is-light]="form.disabled" [class.is-primary]="form.value['shape'] === 'circle'" class="button is-medium is-expanded">
         <input formControlName="shape" type="radio" value="circle"> Circle
       </label>
-      <label [ngClass]="{'is-primary': form.value['shape'] === 'square'}" class="button is-medium is-expanded">
+      <label [class.is-light]="form.disabled" [class.is-primary]="form.value['shape'] === 'square'" class="button is-medium is-expanded">
         <input formControlName="shape" type="radio" value="square"> Square
       </label>
     </div>
