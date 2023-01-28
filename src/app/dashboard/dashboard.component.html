@@ -19,10 +19,10 @@
       </label>
       <div class="buttons has-addons">
         <label [class.is-light]="form.disabled" [class.is-primary]="form.value['shape'] === 'circle'" class="button is-medium is-expanded">
-          <input formControlName="shape" type="radio" class="radio" value="circle"> Circle
+          <input class="radio" formControlName="shape" type="radio" value="circle"> Circle
         </label>
         <label [class.is-light]="form.disabled" [class.is-primary]="form.value['shape'] === 'square'" class="button is-medium is-expanded">
-          <input formControlName="shape" type="radio" class="radio" value="square"> Square
+          <input class="radio" formControlName="shape" type="radio" value="square"> Square
         </label>
       </div>
     </div>

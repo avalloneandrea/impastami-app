@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { CalculatorService } from '../calculator/calculator.service';
 import { Recipe } from '../domain/recipe';
 import { Settings } from '../domain/settings';
-import { CalculatorService } from "../calculator/calculator.service";
 
 @Component({
   selector: 'app-viewer',
   templateUrl: './viewer.component.html',
-  styleUrls: ['./viewer.component.scss']
+  styleUrls: [ './viewer.component.scss' ],
 })
 export class ViewerComponent {
 
@@ -21,7 +20,7 @@ export class ViewerComponent {
   }
 
   onBack(): void {
-    this.router.navigate([ 'dashboard' ] );
+    this.router.navigate([ 'dashboard' ]);
   }
 
 }

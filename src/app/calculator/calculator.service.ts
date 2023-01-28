@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
-
 import { Recipe } from '../domain/recipe';
 import { Settings } from '../domain/settings';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class CalculatorService {
 
   private thickness = 0.5;
@@ -16,7 +13,7 @@ export class CalculatorService {
 
   getRecipe({ amount, shape, size, hydration, time }: Settings) {
 
-    const surface = amount * size * size * (shape === 'circle' ? (Math.PI / 4) : 1)
+    const surface = amount * size * size * (shape === 'circle' ? (Math.PI / 4) : 1);
     const dough = surface * this.thickness;
     const flour = dough / (1 + hydration / 100);
     const water = flour * hydration / 100;
