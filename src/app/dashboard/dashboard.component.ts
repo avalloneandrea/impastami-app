@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { CalculatorService } from '../calculator/calculator.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +11,7 @@ export class DashboardComponent {
 
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private calculator: CalculatorService) {
+  constructor(private formBuilder: FormBuilder, private router: Router) {
     this.form = this.formBuilder.group({
       amount: [ '', [ Validators.required, Validators.min(1) ] ],
       shape: [ '', [ Validators.required ] ],
@@ -24,8 +23,7 @@ export class DashboardComponent {
 
   onSubmit(): void {
     this.form.disable();
-    console.log(this.form.value);
-    console.log(this.calculator.getRecipe(this.form.value));
+    this.router.navigate([ 'viewer' ], { queryParams: this.form.value });
   }
 
 }

@@ -1,79 +1,81 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="form">
+<div class="container is-max-desktop">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
 
-  <div class="field">
-    <label class="label">
-      Amount
-    </label>
-    <div class="control has-icons-right">
-      <input class="input is-primary is-medium" formControlName="amount" inputMode="decimal" min="1" placeholder="0" step="1" type="number">
-      <span class="icon is-right has-text-primary">
+    <div class="field">
+      <label class="label">
+        Amount
+      </label>
+      <div class="control has-icons-right">
+        <input class="input is-primary is-medium" formControlName="amount" inputMode="decimal" min="1" placeholder="0" step="1" type="number">
+        <span class="icon is-right has-text-primary">
         <i class="fas fa-fw fa-utensils"></i>
       </span>
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label class="label">
-      Shape
-    </label>
-    <div class="buttons has-addons">
-      <label [class.is-light]="form.disabled" [class.is-primary]="form.value['shape'] === 'circle'" class="button is-medium is-expanded">
-        <input formControlName="shape" type="radio" value="circle"> Circle
+    <div class="field">
+      <label class="label">
+        Shape
       </label>
-      <label [class.is-light]="form.disabled" [class.is-primary]="form.value['shape'] === 'square'" class="button is-medium is-expanded">
-        <input formControlName="shape" type="radio" value="square"> Square
-      </label>
+      <div class="buttons has-addons">
+        <label [class.is-light]="form.disabled" [class.is-primary]="form.value['shape'] === 'circle'" class="button is-medium is-expanded">
+          <input formControlName="shape" type="radio" class="radio" value="circle"> Circle
+        </label>
+        <label [class.is-light]="form.disabled" [class.is-primary]="form.value['shape'] === 'square'" class="button is-medium is-expanded">
+          <input formControlName="shape" type="radio" class="radio" value="square"> Square
+        </label>
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label class="label">
-      Size (cm)
-    </label>
-    <div class="control has-icons-right">
-      <input class="input is-primary is-medium" formControlName="size" inputMode="decimal" max="35" min="22" placeholder="0" step="1" type="number">
-      <span class="icon is-right has-text-primary">
+    <div class="field">
+      <label class="label">
+        Size (cm)
+      </label>
+      <div class="control has-icons-right">
+        <input class="input is-primary is-medium" formControlName="size" inputMode="decimal" max="35" min="22" placeholder="0" step="1" type="number">
+        <span class="icon is-right has-text-primary">
         <i class="fas fa-fw fa-up-right-and-down-left-from-center"></i>
       </span>
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label class="label">
-      Hydration (%)
-    </label>
-    <div class="control has-icons-right">
-      <input class="input is-primary is-medium" formControlName="hydration" inputMode="decimal" max="100" min="50" placeholder="0" step="1" type="number">
-      <span class="icon is-right has-text-primary">
+    <div class="field">
+      <label class="label">
+        Hydration (%)
+      </label>
+      <div class="control has-icons-right">
+        <input class="input is-primary is-medium" formControlName="hydration" inputMode="decimal" max="100" min="50" placeholder="0" step="1" type="number">
+        <span class="icon is-right has-text-primary">
         <i class="fas fa-fw fa-droplet"></i>
       </span>
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label class="label">
-      Time (h)
-    </label>
-    <div class="control has-icons-right">
-      <input class="input is-primary is-medium" formControlName="time" inputMode="decimal" max="72" min="1" placeholder="0" step="1" type="number">
-      <span class="icon is-right has-text-primary">
+    <div class="field">
+      <label class="label">
+        Time (h)
+      </label>
+      <div class="control has-icons-right">
+        <input class="input is-primary is-medium" formControlName="time" inputMode="decimal" max="72" min="1" placeholder="0" step="1" type="number">
+        <span class="icon is-right has-text-primary">
         <i class="fas fa-fw fa-clock"></i>
       </span>
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label class="label">
-      &nbsp;
-    </label>
-    <div class="control">
-      <button [class.is-loading]="form.disabled" [disabled]="form.invalid" class="button is-primary is-medium is-fullwidth" type="submit">
+    <div class="field">
+      <label class="label">
+        &nbsp;
+      </label>
+      <div class="control">
+        <button [class.is-loading]="form.disabled" [disabled]="form.invalid" class="button is-primary is-medium is-fullwidth" type="submit">
         <span class="icon">
           <i class="fas fa-fw fa-pizza-slice"></i>
         </span>
-        <strong>Impastami</strong>
-      </button>
+          <strong>Impastami</strong>
+        </button>
+      </div>
     </div>
-  </div>
 
-</form>
+  </form>
+</div>

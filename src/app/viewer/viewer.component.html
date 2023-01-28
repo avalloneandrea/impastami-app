@@ -1,0 +1,86 @@
+<div class="container is-max-desktop">
+
+  <div class="columns">
+    <div class="column">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="assets/images/flour.png" alt="Flour">
+          </figure>
+        </div>
+        <div class="card-content has-text-centered">
+          <p class="title is-4">
+            Flour
+          </p>
+          <p class="subtitle is-6">
+            {{recipe?.flour}} grams
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="assets/images/water.png" alt="Water">
+          </figure>
+        </div>
+        <div class="card-content has-text-centered">
+          <p class="title is-4">
+            Water
+          </p>
+          <p class="subtitle is-6">
+            {{recipe?.water}} grams
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="assets/images/salt.png" alt="Salt">
+          </figure>
+        </div>
+        <div class="card-content has-text-centered">
+          <p class="title is-4">
+            Salt
+          </p>
+          <p class="subtitle is-6">
+            {{recipe?.salt}} grams
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="assets/images/yeast.png" alt="Yeast">
+          </figure>
+        </div>
+        <div class="card-content has-text-centered">
+          <p class="title is-4">
+            Dry yeast
+          </p>
+          <p class="subtitle is-6">
+            {{recipe?.dryYeast}} grams
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="button is-primary is-medium is-fullwidth" (click)="onBack()">
+    <span class="icon">
+      <i class="fas fa-fw fa-chevron-left"></i>
+    </span>
+    <strong>Go back</strong>
+  </button>
+
+</div>
