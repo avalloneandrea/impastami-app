@@ -1,4 +1,4 @@
-<div class="container is-max-desktop">
+<div class="container is-max-desktop" @animate>
 
   <div class="columns">
     <div class="column">
@@ -76,11 +76,15 @@
     </div>
   </div>
 
-  <button (click)="onBack()" class="button is-primary is-medium is-fullwidth">
-    <span class="icon">
-      <i class="fas fa-fw fa-chevron-left"></i>
-    </span>
-    <strong>Go back</strong>
-  </button>
+  <div class="columns">
+    <div class="column">
+      <button (click)="onBack()" class="button is-primary is-medium is-fullwidth">
+        <span class="icon">
+          <i class="fas fa-fw fa-chevron-left"></i>
+        </span>
+        <strong>Go back</strong>
+      </button>
+    </div>
+  </div>
 
 </div>

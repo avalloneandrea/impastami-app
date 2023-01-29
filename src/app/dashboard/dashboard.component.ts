@@ -1,15 +1,22 @@
+import { query, transition, trigger, useAnimation } from '@angular/animations';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import localForage from 'localforage';
 import { map, take } from 'rxjs';
 import { fromPromise } from 'rxjs/internal/observable/innerFrom';
+import { fadeIn } from '../app-animations';
 import { Settings } from '../domain/settings';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: [ './dashboard.component.scss' ],
+  animations: [ trigger('animate', [
+    transition(':enter',
+      query('.field',
+        useAnimation(fadeIn))),
+  ]) ],
 })
 export class DashboardComponent {
 
