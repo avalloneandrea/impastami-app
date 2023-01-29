@@ -1,90 +1,115 @@
-<div class="container is-max-desktop" @animate>
+<div class="container is-max-desktop has-text-centered" @animate>
 
-  <div class="columns">
-    <div class="column">
-      <div class="card">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img alt="Flour" src="assets/images/flour.png">
-          </figure>
-        </div>
-        <div class="card-content has-text-centered">
-          <p class="title is-4">
-            Flour
-          </p>
-          <p class="subtitle is-6">
-            {{recipe?.flour}} grams
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="column">
-      <div class="card">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img alt="Water" src="assets/images/water.png">
-          </figure>
-        </div>
-        <div class="card-content has-text-centered">
-          <p class="title is-4">
-            Water
-          </p>
-          <p class="subtitle is-6">
-            {{recipe?.water}} grams
-          </p>
-        </div>
+  <div class="tile is-ancestor">
+    <div class="tile is-parent">
+      <div class="tile is-child">
+        <p class="title">You want ...</p>
       </div>
     </div>
   </div>
 
-  <div class="columns">
-    <div class="column">
-      <div class="card">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img alt="Salt" src="assets/images/salt.png">
-          </figure>
-        </div>
-        <div class="card-content has-text-centered">
-          <p class="title is-4">
-            Salt
-          </p>
-          <p class="subtitle is-6">
-            {{recipe?.salt}} grams
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="column">
-      <div class="card">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img alt="Yeast" src="assets/images/yeast.png">
-          </figure>
-        </div>
-        <div class="card-content has-text-centered">
-          <p class="title is-4">
-            Dry yeast
-          </p>
-          <p class="subtitle is-6">
-            {{recipe?.dryYeast}} grams
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="columns">
-    <div class="column">
-      <button (click)="onBack()" class="button is-primary is-medium is-fullwidth">
+  <div class="tile is-ancestor">
+    <div class="tile is-parent">
+      <div class="tile is-child notification is-primary is-light">
         <span class="icon">
-          <i class="fas fa-fw fa-chevron-left"></i>
+          <i class="fas fa-xl fa-fw fa-utensils"></i>
         </span>
-        <strong>Go back</strong>
-      </button>
+        <p class="heading">Amount</p>
+        <p class="title">{{settings?.amount}}</p>
+      </div>
+    </div>
+
+    <div class="tile is-parent">
+      <div class="tile is-child notification is-primary is-light">
+        <span class="icon">
+          <i class="fas fa-xl fa-fw fa-up-right-and-down-left-from-center"></i>
+        </span>
+        <p class="heading">Size</p>
+        <p class="title">{{settings?.size}} cm</p>
+      </div>
+    </div>
+
+    <div class="tile is-parent">
+      <div class="tile is-child notification is-primary is-light">
+        <span class="icon">
+          <i class="fas fa-xl fa-fw fa-droplet"></i>
+        </span>
+        <p class="heading">Hydration</p>
+        <p class="title">{{settings?.hydration}} %</p>
+      </div>
+    </div>
+
+    <div class="tile is-parent">
+      <div class="tile is-child notification is-primary is-light">
+        <span class="icon">
+          <i class="fas fa-xl fa-fw fa-clock"></i>
+        </span>
+        <p class="heading">Time</p>
+        <p class="title">{{settings?.time}} h</p>
+      </div>
     </div>
   </div>
 
+  <div class="tile is-ancestor">
+    <div class="tile is-parent">
+      <div class="tile is-child">
+        <p class="title">You need ...</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tile is-ancestor">
+    <div class="tile is-parent">
+      <div class="tile is-child notification is-primary is-light">
+        <span class="icon">
+          <i class="fas fa-xl fa-fw fa-wheat-awn"></i>
+        </span>
+        <p class="heading">Flour</p>
+        <p class="title">{{recipe?.flour}} g</p>
+      </div>
+    </div>
+
+    <div class="tile is-parent">
+      <div class="tile is-child notification is-primary is-light">
+        <span class="icon">
+          <i class="fas fa-xl fa-fw fa-glass-water"></i>
+        </span>
+        <p class="heading">Water</p>
+        <p class="title">{{recipe?.water}} g</p>
+      </div>
+    </div>
+
+    <div class="tile is-parent">
+      <div class="tile is-child notification is-primary is-light">
+        <span class="icon">
+          <i class="fas fa-xl fa-fw fa-cubes-stacked"></i>
+        </span>
+        <p class="heading">Salt</p>
+        <p class="title">{{recipe?.salt}} g</p>
+      </div>
+    </div>
+
+    <div class="tile is-parent">
+      <div class="tile is-child notification is-primary is-light">
+        <span class="icon">
+          <i class="fas fa-xl fa-fw fa-disease"></i>
+        </span>
+        <p class="heading">Yeast</p>
+        <p class="title">{{recipe?.yeast}} g</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tile is-ancestor">
+    <div class="tile is-parent">
+      <div class="tile is-child">
+        <button (click)="onBack()" class="button is-primary is-medium">
+          <span class="icon">
+            <i class="fas fa-fw fa-chevron-left"></i>
+          </span>
+          <strong>Go back</strong>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

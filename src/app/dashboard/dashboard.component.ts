@@ -6,7 +6,7 @@ import localForage from 'localforage';
 import { map, take } from 'rxjs';
 import { fromPromise } from 'rxjs/internal/observable/innerFrom';
 import { fadeIn } from '../app-animations';
-import { Settings } from '../domain/settings';
+import { Settings } from '../core/settings';
 
 @Component({
   selector: 'app-dashboard',

@@ -1,7 +1,7 @@
 export interface Settings {
 
   amount: number;
-  shape: string;
+  shape: 'circle' | 'square',
   size: number;
   hydration: number;
   time: number;
