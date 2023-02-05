@@ -28,7 +28,7 @@ export class DashboardComponent {
       shape: [ '', [ Validators.required ] ],
       size: [ '', [ Validators.required, Validators.min(22), Validators.max(35) ] ],
       hydration: [ '', [ Validators.required, Validators.min(50), Validators.max(100) ] ],
-      time: [ '', [ Validators.required, Validators.min(1), Validators.max(72) ] ],
+      rise: [ '', [ Validators.required, Validators.min(1), Validators.max(72) ] ],
     });
     fromPromise(localForage.getItem('settings')).pipe(
       map(settings => settings as Settings),

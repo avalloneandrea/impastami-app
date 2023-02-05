@@ -14,11 +14,13 @@
     <div class="field">
       <label class="label">Shape</label>
       <div class="buttons has-addons">
-        <label [class.is-light]="form.disabled" [class.is-primary]="form.value['shape'] === 'circle'" class="button is-medium is-expanded">
-          <input class="radio" formControlName="shape" type="radio" value="circle">Circle
+        <label [class.is-light]="form.disabled" [class.is-primary]="form.value['shape'] === 'round'" class="button is-medium is-expanded">
+          <input class="radio" formControlName="shape" type="radio" value="round">
+          <span>Round</span>
         </label>
         <label [class.is-light]="form.disabled" [class.is-primary]="form.value['shape'] === 'square'" class="button is-medium is-expanded">
-          <input class="radio" formControlName="shape" type="radio" value="square">Square
+          <input class="radio" formControlName="shape" type="radio" value="square">
+          <span>Square</span>
         </label>
       </div>
     </div>
@@ -44,9 +46,9 @@
     </div>
 
     <div class="field">
-      <label class="label">Time (h)</label>
+      <label class="label">Rise (h)</label>
       <div class="control has-icons-right">
-        <input class="input is-primary is-medium" formControlName="time" inputMode="decimal" max="72" min="1" placeholder="0" step="1" type="number">
+        <input class="input is-primary is-medium" formControlName="rise" inputMode="decimal" max="72" min="1" placeholder="0" step="1" type="number">
         <span class="icon is-right has-text-primary">
           <i class="fas fa-fw fa-clock"></i>
         </span>

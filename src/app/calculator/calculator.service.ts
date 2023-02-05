@@ -10,14 +10,14 @@ export class CalculatorService {
 
   constructor() { }
 
-  getRecipe({ amount, shape, size, hydration, time }: Settings) {
+  getRecipe({ amount, shape, size, hydration, rise }: Settings) {
 
-    const surface = amount * size * size * (shape === 'circle' ? (Math.PI / 4) : 1);
+    const surface = amount * size * size * (shape === 'round' ? (Math.PI / 4) : 1);
     const dough = surface * this.thickness;
     const flour = dough / (1 + hydration / 100);
     const water = flour * hydration / 100;
     const salt = water * this.salinity;
-    const yeast = 3 * Math.pow(flour / 500, 0.8) * Math.pow(12 / time, 1.2);
+    const yeast = 3 * Math.pow(flour / 500, 0.8) * Math.pow(12 / rise, 1.2);
 
     const recipe = <Recipe>{};
     recipe.flour = Math.round(flour);

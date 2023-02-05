@@ -1,9 +1,9 @@
 export interface Settings {
 
   amount: number;
-  shape: 'circle' | 'square',
+  shape: 'round' | 'square',
   size: number;
   hydration: number;
-  time: number;
+  rise: number;
 
 }
