@@ -24,11 +24,11 @@ export class DashboardComponent {
 
   constructor(private formBuilder: FormBuilder, private router: Router) {
     this.form = this.formBuilder.group({
-      amount: [ '', [ Validators.required, Validators.min(1) ] ],
-      shape: [ '', [ Validators.required ] ],
-      size: [ '', [ Validators.required, Validators.min(22), Validators.max(35) ] ],
-      hydration: [ '', [ Validators.required, Validators.min(50), Validators.max(100) ] ],
-      rise: [ '', [ Validators.required, Validators.min(1), Validators.max(72) ] ],
+      amount: [ 1, [ Validators.required, Validators.min(1) ] ],
+      shape: [ 'round', [ Validators.required ] ],
+      size: [ 28, [ Validators.required, Validators.min(8), Validators.max(35) ] ],
+      hydration: [ 65, [ Validators.required, Validators.min(50), Validators.max(100) ] ],
+      rise: [ 12, [ Validators.required, Validators.min(1), Validators.max(48) ] ],
     });
     fromPromise(localForage.getItem('settings')).pipe(
       map(settings => settings as Settings),
