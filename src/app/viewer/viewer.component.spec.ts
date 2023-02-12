@@ -53,8 +53,8 @@ describe('ViewerComponent', () => {
     fixture = TestBed.createComponent(ViewerComponent);
     component = fixture.componentInstance;
     element = fixture.nativeElement;
-    fixture.detectChanges();
     router = TestBed.inject(Router);
+    fixture.detectChanges();
   }));
 
   it('should create the component', () => {
@@ -104,9 +104,11 @@ describe('ViewerComponent', () => {
     expect(button.querySelector('button')!.textContent).toContain('back');
   });
 
-  it('should navigate to the dashboard component', async () => {
-    await component.onBack();
-    expect(router.url).toContain('/dashboard');
-  });
+  it('should navigate to the dashboard component', waitForAsync(() => {
+    component.onBack();
+    fixture.whenStable().then(() => {
+      expect(router.url).toContain('/dashboard');
+    });
+  }));
 
 });
