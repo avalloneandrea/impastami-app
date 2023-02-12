@@ -1,5 +1,5 @@
 import { query, transition, trigger, useAnimation } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import localForage from 'localforage';
@@ -12,22 +12,25 @@ import { Settings } from '../core/settings';
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: [ './dashboard.component.scss' ],
-  animations: [ trigger('animate', [
-    transition(':enter',
-      query('.field',
-        useAnimation(fadeIn))),
-  ]) ],
+  animations: [
+    trigger('animate', [
+      transition(':enter',
+        query('.field',
+          useAnimation(fadeIn))) ]),
+  ],
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router) {}
+
+  ngOnInit(): void {
     this.form = this.formBuilder.group({
-      amount: [ 1, [ Validators.required, Validators.min(1) ] ],
+      amount: [ 4, [ Validators.required, Validators.min(1) ] ],
       shape: [ 'round', [ Validators.required ] ],
       size: [ 28, [ Validators.required, Validators.min(8), Validators.max(35) ] ],
-      hydration: [ 65, [ Validators.required, Validators.min(50), Validators.max(100) ] ],
+      hydration: [ 60, [ Validators.required, Validators.min(50), Validators.max(100) ] ],
       rise: [ 12, [ Validators.required, Validators.min(1), Validators.max(48) ] ],
     });
     fromPromise(localForage.getItem('settings')).pipe(

@@ -8,7 +8,7 @@ export class CalculatorService {
   private thickness = 0.5;
   private salinity = 0.075;
 
-  constructor() { }
+  constructor() {}
 
   getRecipe({ amount, shape, size, hydration, rise }: Settings) {
 
