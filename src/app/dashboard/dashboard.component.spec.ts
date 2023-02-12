@@ -112,7 +112,8 @@ describe('DashboardComponent', () => {
   it('should navigate to the viewer component', async () => {
     await component.onSubmit();
     expect(component.form.disabled).toBeTruthy();
-    expect(await localForage.getItem('settings')).toEqual(roundSettings);
+    const settings = await localForage.getItem('settings');
+    expect(settings).toEqual(roundSettings);
     expect(router.url).toContain('/viewer');
     expect(router.url).toContain(`amount=${roundSettings.amount}`);
     expect(router.url).toContain(`shape=${roundSettings.shape}`);
