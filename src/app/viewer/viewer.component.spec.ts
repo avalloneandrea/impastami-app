@@ -23,11 +23,10 @@ describe('ViewerComponent', () => {
   const recipe: Recipe = {
     flour: 770,
     water: 462,
-    salt: 35,
+    salt: 23,
     yeast: 4.24,
   };
 
-  const route = { snapshot: { queryParams: settings } };
   const calculator = jasmine.createSpyObj('CalculatorService', [ 'getRecipe' ]);
 
   let fixture: ComponentFixture<ViewerComponent>;
@@ -46,7 +45,7 @@ describe('ViewerComponent', () => {
         TranslocoTestingModule,
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: route },
+        { provide: ActivatedRoute, useValue: { snapshot: { queryParams: settings } } },
         { provide: CalculatorService, useValue: calculator },
       ],
     }).compileComponents();
@@ -57,7 +56,7 @@ describe('ViewerComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should create the component', () => {
+  it('should create the component', waitForAsync(() => {
     expect(component).toBeDefined();
     expect(component.settings).toEqual(settings);
     expect(component.recipe).toEqual(recipe);
@@ -102,7 +101,7 @@ describe('ViewerComponent', () => {
 
     const button = element.querySelectorAll('.tile.is-child')[10];
     expect(button.querySelector('button')!.textContent).toContain('back');
-  });
+  }));
 
   it('should navigate to the dashboard component', waitForAsync(() => {
     component.onBack();

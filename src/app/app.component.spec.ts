@@ -19,7 +19,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should create the component', () => {
+  it('should be created', waitForAsync(() => {
     expect(component).toBeDefined();
 
     const header = element.querySelector('img');
@@ -30,6 +30,6 @@ describe('AppComponent', () => {
     expect(footer!.textContent).toContain('Impastami');
     expect(footer!.textContent).toContain('Andrea Avallone');
     expect(footer!.textContent).toContain('MIT License');
-  });
+  }));
 
 });

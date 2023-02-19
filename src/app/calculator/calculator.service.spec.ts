@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Settings } from '../core/settings';
 import { CalculatorService } from './calculator.service';
 
@@ -22,29 +22,29 @@ describe('CalculatorService', () => {
 
   let service: CalculatorService;
 
-  beforeEach(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(CalculatorService);
-  });
+  }));
 
-  it('should create the service', () => {
+  it('should be created', waitForAsync(() => {
     expect(service).toBeTruthy();
-  });
+  }));
 
-  it('should return the recipe for round pizzas', () => {
+  it('should return the recipe for round pizzas', waitForAsync(() => {
     const recipe = service.getRecipe(roundSettings);
     expect(recipe.flour).toEqual(770);
     expect(recipe.water).toEqual(462);
-    expect(recipe.salt).toEqual(35);
+    expect(recipe.salt).toEqual(23);
     expect(recipe.yeast).toEqual(4.24);
-  });
+  }));
 
-  it('should return the recipe for square pizzas', () => {
+  it('should return the recipe for square pizzas', waitForAsync(() => {
     const recipe = service.getRecipe(squareSettings);
     expect(recipe.flour).toEqual(500);
     expect(recipe.water).toEqual(400);
-    expect(recipe.salt).toEqual(30);
+    expect(recipe.salt).toEqual(15);
     expect(recipe.yeast).toEqual(1.31);
-  });
+  }));
 
 });

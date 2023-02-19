@@ -12,26 +12,10 @@ import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {
 
-  const roundSettings: Settings = {
-    amount: 4,
-    shape: 'round',
-    size: 28,
-    hydration: 60,
-    rise: 12,
-  };
-
-  const squareSettings: Settings = {
-    amount: 2,
-    shape: 'square',
-    size: 30,
-    hydration: 80,
-    rise: 24,
-  };
-
   let fixture: ComponentFixture<DashboardComponent>;
+  let router: Router;
   let component: DashboardComponent;
   let element: HTMLElement;
-  let router: Router;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -44,48 +28,91 @@ describe('DashboardComponent', () => {
         TranslocoTestingModule,
       ],
     }).compileComponents();
-    fixture = TestBed.createComponent(DashboardComponent);
-    component = fixture.componentInstance;
-    element = fixture.nativeElement;
-    fixture.detectChanges();
-    router = TestBed.inject(Router);
   }));
 
-  it('should create the component with default settings', () => {
-    expect(component).toBeDefined();
-    expect(component.form.value).toEqual(roundSettings);
+  describe('using default settings', () => {
 
-    const amount = element.querySelectorAll('.field')[0];
-    expect(amount.querySelector('label')!.textContent).toContain('amount');
-    expect(amount.querySelector('input')!.value).toEqual('4');
+    const defaultSettings: Settings = {
+      amount: 4,
+      shape: 'round',
+      size: 28,
+      hydration: 60,
+      rise: 12,
+    };
 
-    const shape = element.querySelectorAll('.field')[1];
-    expect(shape.querySelector('label')!.textContent).toContain('shape');
-    expect(shape.querySelectorAll('input')[0].checked).toBeTruthy();
+    beforeEach(waitForAsync(() => {
+      fixture = TestBed.createComponent(DashboardComponent);
+      router = TestBed.inject(Router);
+      component = fixture.componentInstance;
+      element = fixture.nativeElement;
+      fixture.detectChanges();
+    }));
 
-    const size = element.querySelectorAll('.field')[2];
-    expect(size.querySelector('label')!.textContent).toContain('size (cm)');
-    expect(size.querySelector('input')!.value).toEqual('28');
+    it('should be created', waitForAsync(() => {
+      expect(component).toBeDefined();
+      expect(component.form.value).toEqual(defaultSettings);
 
-    const hydration = element.querySelectorAll('.field')[3];
-    expect(hydration.querySelector('label')!.textContent).toContain('hydration (%)');
-    expect(hydration.querySelector('input')!.value).toEqual('60');
+      const amount = element.querySelectorAll('.field')[0];
+      expect(amount.querySelector('label')!.textContent).toContain('amount');
+      expect(amount.querySelector('input')!.value).toEqual('4');
 
-    const rise = element.querySelectorAll('.field')[4];
-    expect(rise.querySelector('label')!.textContent).toContain('rise (h)');
-    expect(rise.querySelector('input')!.value).toEqual('12');
+      const shape = element.querySelectorAll('.field')[1];
+      expect(shape.querySelector('label')!.textContent).toContain('shape');
+      expect(shape.querySelectorAll('input')[0].checked).toBeTruthy();
 
-    const button = element.querySelectorAll('.field')[5];
-    expect(button.querySelector('button')!.textContent).toEqual('Impastami');
+      const size = element.querySelectorAll('.field')[2];
+      expect(size.querySelector('label')!.textContent).toContain('size (cm)');
+      expect(size.querySelector('input')!.value).toEqual('28');
+
+      const hydration = element.querySelectorAll('.field')[3];
+      expect(hydration.querySelector('label')!.textContent).toContain('hydration (%)');
+      expect(hydration.querySelector('input')!.value).toEqual('60');
+
+      const rise = element.querySelectorAll('.field')[4];
+      expect(rise.querySelector('label')!.textContent).toContain('rise (h)');
+      expect(rise.querySelector('input')!.value).toEqual('12');
+
+      const button = element.querySelectorAll('.field')[5];
+      expect(button.querySelector('button')!.textContent).toEqual('Impastami');
+    }));
+
+    it('should navigate to the viewer component', waitForAsync(() => {
+      component.onSubmit();
+      fixture.whenStable().then(() => {
+        expect(component.form.disabled).toBeTruthy();
+        expect(router.url).toContain('/viewer');
+        expect(router.url).toContain(`amount=${defaultSettings.amount}`);
+        expect(router.url).toContain(`shape=${defaultSettings.shape}`);
+        expect(router.url).toContain(`size=${defaultSettings.size}`);
+        expect(router.url).toContain(`hydration=${defaultSettings.hydration}`);
+        expect(router.url).toContain(`rise=${defaultSettings.rise}`);
+      });
+    }));
+
   });
 
-  it('should create the component with custom settings', waitForAsync(() => {
-    spyOn(localForage, 'getItem').and.returnValue(firstValueFrom(of(squareSettings)));
-    component.ngOnInit();
-    fixture.whenStable().then(() => {
+  describe('using custom settings', () => {
+
+    const customSettings: Settings = {
+      amount: 2,
+      shape: 'square',
+      size: 30,
+      hydration: 80,
+      rise: 24,
+    };
+
+    beforeEach(waitForAsync(() => {
+      spyOn(localForage, 'getItem').and.returnValue(firstValueFrom(of(customSettings)));
+      fixture = TestBed.createComponent(DashboardComponent);
+      router = TestBed.inject(Router);
+      component = fixture.componentInstance;
+      element = fixture.nativeElement;
       fixture.detectChanges();
+    }));
+
+    it('should be created', waitForAsync(() => {
       expect(component).toBeDefined();
-      expect(component.form.value).toEqual(squareSettings);
+      expect(component.form.value).toEqual(customSettings);
 
       const amount = element.querySelectorAll('.field')[0];
       expect(amount.querySelector('label')!.textContent).toContain('amount');
@@ -109,20 +136,21 @@ describe('DashboardComponent', () => {
 
       const button = element.querySelectorAll('.field')[5];
       expect(button.querySelector('button')!.textContent).toEqual('Impastami');
-    });
-  }));
+    }));
 
-  it('should navigate to the viewer component', waitForAsync(() => {
-    component.onSubmit();
-    fixture.whenStable().then(() => {
-      expect(component.form.disabled).toBeTruthy();
-      expect(router.url).toContain('/viewer');
-      expect(router.url).toContain(`amount=${roundSettings.amount}`);
-      expect(router.url).toContain(`shape=${roundSettings.shape}`);
-      expect(router.url).toContain(`size=${roundSettings.size}`);
-      expect(router.url).toContain(`hydration=${roundSettings.hydration}`);
-      expect(router.url).toContain(`rise=${roundSettings.rise}`);
-    });
-  }));
+    it('should navigate to the viewer component', waitForAsync(() => {
+      component.onSubmit();
+      fixture.whenStable().then(() => {
+        expect(component.form.disabled).toBeTruthy();
+        expect(router.url).toContain('/viewer');
+        expect(router.url).toContain(`amount=${customSettings.amount}`);
+        expect(router.url).toContain(`shape=${customSettings.shape}`);
+        expect(router.url).toContain(`size=${customSettings.size}`);
+        expect(router.url).toContain(`hydration=${customSettings.hydration}`);
+        expect(router.url).toContain(`rise=${customSettings.rise}`);
+      });
+    }));
+
+  });
 
 });
