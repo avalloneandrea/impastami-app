@@ -10,7 +10,7 @@ jobs:
         with:
           node-version: '18.x'
       - run: npm ci
-      - run: xvfb-run npm test -- --no-watch
+      - run: npm test -- --browsers=ChromeHeadless --watch=false
       - name: Upload coverage report
         uses: codecov/codecov-action@v3
         with:

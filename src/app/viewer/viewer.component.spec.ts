@@ -6,8 +6,6 @@ import { TranslocoTestingModule } from '@ngneat/transloco';
 import { CalculatorService } from '../calculator/calculator.service';
 import { Recipe } from '../core/recipe';
 import { Settings } from '../core/settings';
-import { DashboardComponent } from '../dashboard/dashboard.component';
-
 import { ViewerComponent } from './viewer.component';
 
 describe('ViewerComponent', () => {
@@ -40,8 +38,7 @@ describe('ViewerComponent', () => {
       declarations: [ ViewerComponent ],
       imports: [
         NoopAnimationsModule,
-        RouterTestingModule.withRoutes([
-          { path: 'dashboard', component: DashboardComponent } ]),
+        RouterTestingModule,
         TranslocoTestingModule,
       ],
       providers: [
@@ -104,10 +101,10 @@ describe('ViewerComponent', () => {
   }));
 
   it('should navigate to the dashboard component', waitForAsync(() => {
+    const navigate = spyOn(router, 'navigate');
     component.onBack();
-    fixture.whenStable().then(() => {
-      expect(router.url).toContain('/dashboard');
-    });
+    fixture.detectChanges();
+    expect(navigate).toHaveBeenCalledWith([ 'dashboard' ]);
   }));
 
 });

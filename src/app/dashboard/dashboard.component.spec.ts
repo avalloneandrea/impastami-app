@@ -4,10 +4,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslocoTestingModule } from '@ngneat/transloco';
-import localForage from 'localforage';
-import { firstValueFrom, of } from 'rxjs';
 import { Settings } from '../core/settings';
-import { ViewerComponent } from '../viewer/viewer.component';
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {
@@ -23,8 +20,7 @@ describe('DashboardComponent', () => {
       imports: [
         NoopAnimationsModule,
         ReactiveFormsModule,
-        RouterTestingModule.withRoutes([
-          { path: 'viewer', component: ViewerComponent } ]),
+        RouterTestingModule,
         TranslocoTestingModule,
       ],
     }).compileComponents();
@@ -41,6 +37,7 @@ describe('DashboardComponent', () => {
     };
 
     beforeEach(waitForAsync(() => {
+      localStorage.removeItem('settings');
       fixture = TestBed.createComponent(DashboardComponent);
       router = TestBed.inject(Router);
       component = fixture.componentInstance;
@@ -77,16 +74,10 @@ describe('DashboardComponent', () => {
     }));
 
     it('should navigate to the viewer component', waitForAsync(() => {
+      const navigate = spyOn(router, 'navigate');
       component.onSubmit();
-      fixture.whenStable().then(() => {
-        expect(component.form.disabled).toBeTruthy();
-        expect(router.url).toContain('/viewer');
-        expect(router.url).toContain(`amount=${defaultSettings.amount}`);
-        expect(router.url).toContain(`shape=${defaultSettings.shape}`);
-        expect(router.url).toContain(`size=${defaultSettings.size}`);
-        expect(router.url).toContain(`hydration=${defaultSettings.hydration}`);
-        expect(router.url).toContain(`rise=${defaultSettings.rise}`);
-      });
+      fixture.detectChanges();
+      expect(navigate).toHaveBeenCalledWith([ 'viewer' ], { queryParams: defaultSettings });
     }));
 
   });
@@ -102,7 +93,7 @@ describe('DashboardComponent', () => {
     };
 
     beforeEach(waitForAsync(() => {
-      spyOn(localForage, 'getItem').and.returnValue(firstValueFrom(of(customSettings)));
+      localStorage.setItem('settings', JSON.stringify(customSettings));
       fixture = TestBed.createComponent(DashboardComponent);
       router = TestBed.inject(Router);
       component = fixture.componentInstance;
@@ -139,16 +130,10 @@ describe('DashboardComponent', () => {
     }));
 
     it('should navigate to the viewer component', waitForAsync(() => {
+      const navigate = spyOn(router, 'navigate');
       component.onSubmit();
-      fixture.whenStable().then(() => {
-        expect(component.form.disabled).toBeTruthy();
-        expect(router.url).toContain('/viewer');
-        expect(router.url).toContain(`amount=${customSettings.amount}`);
-        expect(router.url).toContain(`shape=${customSettings.shape}`);
-        expect(router.url).toContain(`size=${customSettings.size}`);
-        expect(router.url).toContain(`hydration=${customSettings.hydration}`);
-        expect(router.url).toContain(`rise=${customSettings.rise}`);
-      });
+      fixture.detectChanges();
+      expect(navigate).toHaveBeenCalledWith([ 'viewer' ], { queryParams: customSettings });
     }));
 
   });
