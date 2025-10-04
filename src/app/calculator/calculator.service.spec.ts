@@ -36,7 +36,7 @@ describe('CalculatorService', () => {
     expect(recipe.flour).toEqual(770);
     expect(recipe.water).toEqual(462);
     expect(recipe.salt).toEqual(23);
-    expect(recipe.yeast).toEqual(4.24);
+    expect(recipe.yeast).toEqual(3.21);
   }));
 
   it('should return the recipe for square pizzas', waitForAsync(() => {
@@ -44,7 +44,7 @@ describe('CalculatorService', () => {
     expect(recipe.flour).toEqual(500);
     expect(recipe.water).toEqual(400);
     expect(recipe.salt).toEqual(15);
-    expect(recipe.yeast).toEqual(1.31);
+    expect(recipe.yeast).toEqual(1.04);
   }));
 
 });

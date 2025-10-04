@@ -7,6 +7,7 @@ export class CalculatorService {
 
   private thickness = 0.5;
   private salinity = 0.03;
+  private magic = 0.05
 
   constructor() {}
 
@@ -17,7 +18,7 @@ export class CalculatorService {
     const flour = dough / (1 + hydration / 100);
     const water = flour * hydration / 100;
     const salt = flour * this.salinity;
-    const yeast = 3 * Math.pow(flour / 500, 0.8) * Math.pow(12 / rise, 1.2);
+    const yeast = flour / rise * this.magic;
 
     const recipe = <Recipe>{};
     recipe.flour = Math.round(flour);
